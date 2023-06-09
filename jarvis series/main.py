@@ -1,7 +1,9 @@
 from items import speak, listen
-import bs4, requests, datetime, webbrowser # pip install bs4 requests pyautogui webbrowser datetime -> cmd
+import bs4, requests, datetime, webbrowser, GoogleNews # pip install bs4 requests pyautogui webbrowser datetime googlenews -> cmd
 from pyautogui import *
 import pywhatkit as kit # pip install pywhatkit -> cmd
+import speedtest # pip install speedtest-cli -> cmd
+
 
 def tasks():
     while True:
@@ -59,6 +61,32 @@ def tasks():
             webbrowser.open(f"https://www.{query}.com")
             speak(f"ok boss, opening {query}")
             
-        # specific news topic, headlines
+        elif "news of" in query: 
+            query = query.replace("news of ","")
+            new = GoogleNews.GoogleNews()
+            speak(f"getting news of {query}")
+            new.get_news(query)
+            new.result()
+            a = new.gettext()
+            speak(a[1:5])
+
+        elif "headlines" in query or "headline" in query: 
+            new = GoogleNews.GoogleNews()
+            speak("getting fresh headlines")
+            new.get_news("headlines")
+            new.result()
+            a = new.gettext()
+            speak(a[1:10])
+        
+        elif "speed test" in query:
+            speed = speedtest.Speedtest()
+            speak("checking")
+            ul = speed.upload()
+            ul = int(ul/800000)
+            dl = speed.download()
+            dl = int(dl/800000)
+            speak(f"your upload speed is {ul} mbp s and your download speed is {dl} mbp s")
+        
+
         
 tasks()
