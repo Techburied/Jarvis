@@ -22,7 +22,7 @@ def tasks():
         elif "day" in query:
             day = datetime.datetime.now().strftime("%A")
             speak(day)
-            
+
         elif "temperature" in query:
             q = "temperature in jaipur"
             r = requests.get(f"https://www.google.com/search?q={q}")
@@ -87,6 +87,6 @@ def tasks():
             dl = int(dl/800000)
             speak(f"your upload speed is {ul} mbp s and your download speed is {dl} mbp s")
         
-
+#changed heeheh
         
 tasks()
