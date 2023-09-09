@@ -87,6 +87,4 @@ def tasks():
             dl = int(dl/800000)
             speak(f"your upload speed is {ul} mbp s and your download speed is {dl} mbp s")
         
-#changed heeheh
-        
 tasks()
